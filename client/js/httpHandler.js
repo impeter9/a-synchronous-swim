@@ -11,18 +11,38 @@
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
+  console.log('haha')
+
+  const ajaxFileGet = () => {
+    // var formData = new FormData();
+    $.ajax({
+      type: 'GET',
+      url: serverUrl, // changed this
+      success: (direction) => {
+        console.log('success');
+        SwimTeam.move(direction);
+      },
+      error: () => {
+        console.log('fail');
+      }
+    });
+  };
+
+  setInterval(ajaxFileGet, 2000);
+
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl, // changed this
       cache: false,
       contentType: false,
       processData: false,
       success: () => {
         // reload the page
+        console.log('ajaxFileUplaod success')
         window.location = window.location.href;
       }
     });
